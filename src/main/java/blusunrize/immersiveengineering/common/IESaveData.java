@@ -98,16 +98,12 @@ public class IESaveData extends WorldSavedData
 		nbt.setIntArray("savedDimensions", savedDimensions);
 		for(int dim: savedDimensions)
 		{
-			World world = MinecraftServer.getServer().worldServerForDimension(dim);
-			if(world!=null)
+			NBTTagList connectionList = new NBTTagList();
+			for(Connection con : ImmersiveNetHandler.INSTANCE.getAllConnections(dim))
 			{
-				NBTTagList connectionList = new NBTTagList();
-				for(Connection con : ImmersiveNetHandler.INSTANCE.getAllConnections(world))
-				{
-					connectionList.appendTag(con.writeToNBT());
-				}
-				nbt.setTag("connectionList"+dim, connectionList);
+				connectionList.appendTag(con.writeToNBT());
 			}
+			nbt.setTag("connectionList"+dim, connectionList);
 		}
 
 		NBTTagList mineralList = new NBTTagList();

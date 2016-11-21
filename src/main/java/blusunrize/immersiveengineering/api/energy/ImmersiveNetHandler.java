@@ -143,8 +143,12 @@ public class ImmersiveNetHandler
 	}
 	public Collection<Connection> getAllConnections(World world)
 	{
+		return this.getAllConnections(world.provider.dimensionId);
+	}
+	public Collection<Connection> getAllConnections(int dim)
+	{
 		Set<Connection> ret = newSetFromMap(new ConcurrentHashMap<Connection, Boolean>());
-		for (Set<Connection> conlist : getMultimap(world.provider.dimensionId).values())
+		for (Set<Connection> conlist : getMultimap(dim).values())
 			ret.addAll(conlist);
 		return ret;
 	}
