@@ -221,6 +221,9 @@ public class EventHandler
 			for (Entry<DimensionBlockPos, IICProxy> e:ImmersiveNetHandler.INSTANCE.proxies.entrySet())
 			{
 				DimensionBlockPos p = e.getKey();
+				if (!validateConnections) {
+                    continue;
+                }
 				World w = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(p.dimension);
 				if (w!=null&&w.isBlockLoaded(p))
 					toRemove.add(p);
