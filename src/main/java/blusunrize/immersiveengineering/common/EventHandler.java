@@ -229,8 +229,8 @@ public class EventHandler
 			{
 				DimensionBlockPos p = e.getKey();
 				if (!validateConnections) {
- +              	continue;
- +              }
+                	continue;
+                }
 				World w = FMLCommonHandler.instance().getMinecraftServerInstance().worldServerForDimension(p.dimension);
 				if (w!=null&&w.isBlockLoaded(p))
 					toRemove.add(p);
